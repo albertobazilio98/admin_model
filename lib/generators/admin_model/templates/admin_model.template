@@ -1,0 +1,22 @@
+module RailsAdmin::<%= @class_name %>
+  extend ActiveSupport::Concern
+
+  included do
+    rails_admin do
+      list do<%= @fields_list %>
+        field :created_at
+        field :updated_at
+      end
+      create do<%= @fields_list %>
+      end
+
+      show do<%= @fields_list %>
+        field :created_at
+        field :updated_at
+      end
+
+      edit do<%= @fields_list %>
+      end
+    end
+  end
+end
