@@ -1,11 +1,11 @@
 $:.push File.expand_path("lib", __dir__)
 
 # Maintain your gem's version:
-require "admin_models/version"
+require "admin_model/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |spec|
-  spec.name        = "admin_models"
+  spec.name        = "admin_model"
   spec.version     = AdminModels::VERSION
   spec.authors     = ["Beto"]
   spec.email       = ["albertobazilio@jera.com.br"]

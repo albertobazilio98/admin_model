@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    admin_models (0.1.0)
+    admin_model (0.1.0)
       rails (~> 5.2.4, >= 5.2.4.3)
 
 GEM
@@ -120,7 +120,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  admin_models!
+  admin_model!
   sqlite3
 
 BUNDLED WITH

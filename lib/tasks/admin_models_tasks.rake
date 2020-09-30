@@ -1,4 +1,4 @@
 # desc "Explaining what the task does"
-# task :admin_models do
+# task :admin_model do
 #   # Task goes here
 # end

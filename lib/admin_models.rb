@@ -1,4 +1,4 @@
-require "admin_models/railtie"
+require "admin_model/railtie"
 
 module AdminModels
   # Your code goes here...
