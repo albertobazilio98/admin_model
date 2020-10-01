@@ -7,11 +7,11 @@ require "admin_model/version"
 Gem::Specification.new do |spec|
   spec.name        = "admin_model"
   spec.version     = AdminModels::VERSION
-  spec.authors     = ["Beto"]
-  spec.email       = ["albertobazilio@jera.com.br"]
+  spec.authors     = ["Alberto Bazilio"]
+  spec.email       = ["albertobazilio98@gmail.com.br"]
   spec.homepage    = "https://github.com/albertobazilio98/admin_model"
-  spec.summary     = "Summary of AdminModels."
-  spec.description = "Description of AdminModels."
+  spec.summary     = "Quickly create rails admin stuff"
+  spec.description = "Create concerns and I18n keys for rails admin"
   spec.license     = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
