@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    admin_model (0.1.0)
+    admin_model (0.1.1)
       rails (~> 5.2.4, >= 5.2.4.3)
       rails_admin (> 0)
 
@@ -172,7 +172,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.4.2)
     temple (0.8.2)
     thor (1.0.1)
     thread_safe (0.3.6)
@@ -188,7 +187,6 @@ PLATFORMS
 
 DEPENDENCIES
   admin_model!
-  sqlite3
 
 BUNDLED WITH
    2.1.4
