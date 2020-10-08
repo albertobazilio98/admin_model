@@ -4,7 +4,7 @@ Admin model is a rails gem who includes a generator to quickly create rails admi
 ## Usage
 This gem use the same syntax as the rails model generator
 ```sh
-$ rails generate model ModelName FieldName:FieldType FieldName:FieldType
+$ rails generate admin_model ModelName FieldName:FieldType FieldName:FieldType
 ```
 
 ## Installation
