@@ -30,11 +30,11 @@ class AdminModelGenerator < Rails::Generators::NamedBase
     end
     model_attriutes = ''
     @attributes.each do |attribute|
-      model_attriutes << "\n        #{attribute.name}:"
+      model_attriutes << "\n        #{attribute.name}: please fill me"
     end
     inject_into_file 'config/locales/pt-BR.yml', after: "\n    attributes:\n" do
       <<-YML
-      #{name}: please fill me#{model_attriutes}
+      #{name}:#{model_attriutes}
       YML
     end
   end
