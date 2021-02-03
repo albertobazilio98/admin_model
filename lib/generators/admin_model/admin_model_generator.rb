@@ -8,6 +8,7 @@ class AdminModelGenerator < Rails::Generators::NamedBase
   end
 
   def crate_rails_admin_concern
+    @class_name = class_name
     @fields_list = ''
     @attributes.each do |attribute|
       @fields_list << "\n        field :#{attribute.name}"
@@ -33,7 +34,7 @@ class AdminModelGenerator < Rails::Generators::NamedBase
     end
     inject_into_file 'config/locales/pt-BR.yml', after: "\n    attributes:\n" do
       <<-YML
-      #{name}: please fill me#{model_attriutes}
+      #{name}:#{model_attriutes}
       YML
     end
   end
