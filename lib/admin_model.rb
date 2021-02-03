@@ -1,5 +1,5 @@
 require "admin_model/railtie"
 
-module AdminModels
+module AdminModel
   # Your code goes here...
 end
