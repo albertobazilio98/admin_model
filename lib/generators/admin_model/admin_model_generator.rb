@@ -1,3 +1,5 @@
+require 'yaml'
+
 class AdminModelGenerator < Rails::Generators::NamedBase
   source_root File.expand_path('templates', __dir__)
 
@@ -20,7 +22,40 @@ class AdminModelGenerator < Rails::Generators::NamedBase
     inject_into_class "app/models/#{file_name}.rb", class_name, "  include RailsAdmin::#{class_name}\n"
   end
 
-  def create_translation_keys
+  def get_translation_file
+    ptbr = File.read('config/locales/pt-BR.yml')
+    @ptbr_hash = YAML.load(ptbr)
+  end
+
+  def insert_deafult_attributes_translations_if_necessary
+    if @ptbr_hash["pt-BR"]["activerecord"]["attributes"]["default_attributes"].nil?
+      inject_into_file 'config/locales/pt-BR.yml', after: "\n    attributes:\n" do
+        <<-YML
+      default_attributes: &default_attributes
+        id: '#'
+        name: Nome
+        created_at: Data de criação
+        updated_at: Data de atualização
+        YML
+      end
+    end
+  end
+
+  def insert_base_errors_translations_if_necessary
+    if @ptbr_hash["pt-BR"]["activerecord"]["errors"]["models"]["base_errors"].nil?
+      inject_into_file 'config/locales/pt-BR.yml', after: "    errors:\n      models:\n" do
+        <<-YML
+        base_errors: &base_errors
+          blank: não pode ficar em branco
+          invalid: invalido
+          required: é requirido
+          taken: já existe e deve ser único
+        YML
+      end
+    end
+  end
+
+  def inssert_model_translation_keys
     inject_into_file 'config/locales/pt-BR.yml', after: "\n    models:\n" do
       <<-YML
       #{name}:
@@ -28,16 +63,29 @@ class AdminModelGenerator < Rails::Generators::NamedBase
         other: please fill me
       YML
     end
-    model_attriutes = ''
-    @attributes.each do |attribute|
-      model_attriutes << "\n        #{attribute.name}: please fill me"
+  end
+
+  def insert_attributes_translation_keys
+    model_attriutes = @attributes.reduce('') do |acc, attribute|
+      "#{acc}\n        #{attribute.name}: please fill me"
     end
-    inject_into_file 'config/locales/pt-BR.yml', after: "\n    attributes:\n" do
+    ptbr = File.read("config/locales/pt-BR.yml")
+    inject_into_file 'config/locales/pt-BR.yml', after: ptbr[/pt-BR:\n(.*\n)* {2}activerecord:\n(.*\n)* {4}attributes:\n( {6}.+(\n( {8}.+\n)+))+/] do
       <<-YML
-      #{name}:#{model_attriutes}
+      #{name}:\n        <<: *default_attributes#{model_attriutes}
       YML
     end
   end
 
-
+  def insert_attributes_errors_translation_keys
+    model_attriutes = @attributes.reduce('') do |acc, attribute|
+      "#{acc}\n            #{attribute.name}:\n              <<: *base_errors"
+    end
+    ptbr = File.read("config/locales/pt-BR.yml")
+    inject_into_file 'config/locales/pt-BR.yml', after: ptbr[/pt-BR:\n(.*\n)* {2}activerecord:\n(.*\n)* {4}errors:\n(.*\n)* {6}models:\n( {8}.+(\n( {10}.+\n)+))+/] do
+      <<-YML
+        #{name}:\n          attributes:#{model_attriutes}
+      YML
+    end
+  end
 end
