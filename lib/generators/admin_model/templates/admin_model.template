@@ -1,4 +1,4 @@
-module RailsAdmin::<%= @class_name %>
+module RailsAdmin::<%= @pascal_name %>
   extend ActiveSupport::Concern
 
   included do
